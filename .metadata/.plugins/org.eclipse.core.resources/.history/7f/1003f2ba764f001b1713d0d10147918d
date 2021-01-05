@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.ddtechrj.dsdeliver.entities.Order;
-import br.com.ddtechrj.dsdeliver.entities.dto.OrderDTO;
 import br.com.ddtechrj.dsdeliver.services.OrderService;
 
 @RestController
@@ -21,8 +20,8 @@ public class OrderResource {
 	OrderService service;
 
 	@GetMapping
-	public ResponseEntity<List<OrderDTO>> findAll(){ 
-		List<OrderDTO> list = service.findAll();
+	public ResponseEntity<List<Order>> findAll(){ 
+		List<Order> list = service.findAll();
 		return ResponseEntity.ok().body(list);
 	}
 	
