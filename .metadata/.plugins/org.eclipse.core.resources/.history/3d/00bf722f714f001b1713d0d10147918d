@@ -1,0 +1,29 @@
+package br.com.ddtechrj.dsdeliver.services;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import br.com.ddtechrj.dsdeliver.entities.Order;
+import br.com.ddtechrj.dsdeliver.repositories.OrderRepository;
+
+@Service
+public class OrderService {
+	
+	@Autowired
+	OrderRepository repository;
+
+	public List<Order> findAll(){ 
+		return repository.findAll();
+	}
+	
+	public Order findById(long id) { 
+		Optional<Order> product = repository.findById(id);
+		return product.orElseThrow(() -> new IllegalArgumentException("Invalid id"));
+	}
+	
+	
+	
+}
