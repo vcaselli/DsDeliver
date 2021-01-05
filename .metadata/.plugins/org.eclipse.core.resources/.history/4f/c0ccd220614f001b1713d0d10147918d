@@ -1,0 +1,5 @@
+package br.com.ddtechrj.dsdeliver.entities;
+
+public class Product {
+
+}

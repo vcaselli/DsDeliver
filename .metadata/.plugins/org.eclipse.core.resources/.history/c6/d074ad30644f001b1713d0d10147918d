@@ -1,0 +1,22 @@
+package br.com.ddtechrj.dsdeliver.entities;
+
+import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
+
+import br.com.ddtechrj.dsdeliver.OrderStatus;
+
+public class Order {
+	
+	private Long id; 
+	private String address; 
+	private Double latitude; 
+	private Double longitude; 
+	private Instant moment; 
+	private OrderStatus status; 
+	private Set<Product> products = new HashSet<>(); 
+	
+	
+	
+
+}
