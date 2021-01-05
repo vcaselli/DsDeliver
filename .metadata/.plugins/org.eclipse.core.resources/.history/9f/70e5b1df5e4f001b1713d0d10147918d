@@ -1,0 +1,5 @@
+package br.com.ddtechrj.dsdeliver.config;
+
+public class SecurityConfig {
+
+}
