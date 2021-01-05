@@ -18,46 +18,39 @@ import br.com.ddtechrj.dsdeliver.repositories.ProductRepository;
 
 @Service
 public class OrderService {
-
+	
 	@Autowired
 	OrderRepository repository;
 	@Autowired
 	ProductRepository productRepository;
 
 	@Transactional(readOnly = true)
-	public List<OrderDTO> findAll() {
+	public List<OrderDTO> findAll(){ 
 		return repository.findOrderswithProducts().stream().map(x -> new OrderDTO(x)).collect(Collectors.toList());
 	}
-
+	
 //	@Transactional
 //	public Order findById(long id) { 
 //		Optional<Order> product = repository.findById(id);
 //		return product.orElseThrow(() -> new IllegalArgumentException("Invalid id"));
 //	}
-
-	@Transactional
-	public OrderDTO insert(OrderDTO dto) {
-		Order order = new Order(dto.getAddress(), dto.getLatitude(), dto.getLongitude(), Instant.now(),
-				OrderStatus.PANDING);
-
-		for (ProductDTO p : dto.getProducts()) {
-			Product product = productRepository.getOne(p.getId());
-			order.getProducts().add(product);
-
-		}
-
-		order = repository.save(order);
-
-		return new OrderDTO(order);
-
-	}
 	
 	@Transactional
-	public OrderDTO setDelivered(Long id) {
-	Order order = repository.getOne(id);
-	order.setStatus(OrderStatus.DELIVERED);
-	order = repository.save(order);
-	return new OrderDTO(order);
+	public OrderDTO insert(OrderDTO dto) { 
+		Order order = new Order(dto.getAddress(), dto.getLatitude(), dto.getLongitude(), Instant.now(), OrderStatus.PANDING);
+		
+		for(ProductDTO p : dto.getProducts()) {
+			Product product = productRepository.getOne(p.getId());
+			order.getProducts().add(product);
+			
+		}
+		
+		order = repository.save(order);
+		
+		return new OrderDTO(order);
+		
 	}
-
+	
+	
+	
 }
